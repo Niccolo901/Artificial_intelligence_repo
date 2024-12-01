@@ -629,6 +629,313 @@ silhouette_plot_path = "plots/silouhette_score_plot.png"  # Path to the silhouet
 slide.shapes.add_picture(silhouette_plot_path, Inches(0.5), Inches(3.5), width=Inches(9), height=Inches(4))
 
 
+#Add a blank slide
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Supervised Analysis"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Content
+content_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(4))
+content_frame = content_box.text_frame
+content_frame.word_wrap = True
+
+content = content_frame.add_paragraph()
+content.text = (
+    "In the Supervised Analysis, we aim to predict housing prices based on the features in the dataset.\n\n"
+    "Techniques used:\n"
+    "• Linear Regression\n"
+    "• Random Forest\n"
+    "• Neural Network (TensorFlow)\n"
+    "• XGBoost"
+)
+content.font.size = Pt(20)
+content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Add a blank slide for Linear Regression
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Linear Regression Results"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Content/Description
+content_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.2), Inches(8.5), Inches(2))
+content_frame = content_box.text_frame
+content_frame.word_wrap = True
+
+content = content_frame.add_paragraph()
+content.text = (
+    "Linear regression was performed to predict house prices using the dataset's features.\n\n"
+    "Key Results:\n"
+    "• Coefficients provide insights into feature importance.\n"
+    "• Positive coefficients indicate a direct relationship, while negative coefficients indicate an inverse relationship.\n"
+    "• The plot shows the relative magnitude and direction of coefficients."
+)
+content.font.size = Pt(20)
+content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Add the image for coefficients
+img_path = "plots/OLS_features.png"  # Replace with your actual file path
+slide.shapes.add_picture(img_path, Inches(0.5), Inches(3.5), Inches(8), Inches(4))
+
+
+# Add a new slide for Linear Regression Metrics
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Linear Regression: Performance Metrics"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add metrics as text
+metrics_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(4))
+metrics_frame = metrics_box.text_frame
+metrics_frame.word_wrap = True
+
+metrics_content = metrics_frame.add_paragraph()
+metrics_content.text = (
+    "Linear Regression Model Performance:\n\n"
+    "• Mean Absolute Error (MAE): 50,413.43\n"
+    "• Mean Squared Error (MSE): 4,802,173,538.60\n"
+    "• Root Mean Squared Error (RMSE): 69,297.72\n"
+    "• R-squared (R²): 0.6488\n"
+    "• Adjusted R-squared: 0.6478\n"
+)
+metrics_content.font.size = Pt(20)
+metrics_content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+
+# Add a new slide for Random Forest
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Random Forest: Performance Metrics"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add metrics as text
+metrics_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(4))
+metrics_frame = metrics_box.text_frame
+metrics_frame.word_wrap = True
+
+metrics_content = metrics_frame.add_paragraph()
+metrics_content.text = (
+    "Random Forest Model Performance:\n\n"
+    "• Best Parameters: {'max_depth': 20, 'min_samples_split': 2, 'n_estimators': 500}\n"
+    "• Mean Absolute Error (MAE): 31,641.57\n"
+    "• Mean Squared Error (MSE): 2,375,466,293.68\n"
+    "• Root Mean Squared Error (RMSE): 48,738.76\n"
+    "• R-squared (R²): 0.8263\n"
+    "• Adjusted R-squared: 0.8258\n"
+)
+metrics_content.font.size = Pt(20)
+metrics_content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Insert the feature importance image
+img_path = "plots/rf_feature_importance.png"  # Update the file path if necessary
+slide.shapes.add_picture(img_path, Inches(0.5), Inches(4.5), Inches(8), Inches(3))
+
+# Add a new slide for Neural Network
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Neural Network: Performance Metrics"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add metrics as text
+metrics_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(3))
+metrics_frame = metrics_box.text_frame
+metrics_frame.word_wrap = True
+
+metrics_content = metrics_frame.add_paragraph()
+metrics_content.text = (
+    "Neural Network Model Performance:\n\n"
+    "• Mean Absolute Error (MAE): 43,290.98\n"
+    "• Mean Squared Error (MSE): 3,882,304,308.67\n"
+    "• Root Mean Squared Error (RMSE): 62,308.14\n"
+    "• R-squared (R²): 0.7161\n"
+    "• Adjusted R-squared: 0.7153\n"
+)
+metrics_content.font.size = Pt(20)
+metrics_content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Insert the Training and Validation Loss plot
+img_path = "plots/Train_val_loss.png"  # Update the file path if necessary
+slide.shapes.add_picture(img_path, Inches(0.5), Inches(4.5), Inches(8), Inches(3))
+
+
+# Add a new slide for XGBoost
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "XGBoost: Performance Metrics and Feature Importance"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add metrics as text
+metrics_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(3))
+metrics_frame = metrics_box.text_frame
+metrics_frame.word_wrap = True
+
+metrics_content = metrics_frame.add_paragraph()
+metrics_content.text = (
+    "XGBoost Model Performance:\n\n"
+    "• Mean Absolute Error (MAE): 30,660.61\n"
+    "• Mean Squared Error (MSE): 2,204,422,834.38\n"
+    "• Root Mean Squared Error (RMSE): 46,951.28\n"
+    "• R-squared (R²): 0.8388\n"
+    "• Adjusted R-squared: 0.8383\n\n"
+    "Best Parameters:\n"
+    "• colsample_bytree: 1.0\n"
+    "• learning_rate: 0.1\n"
+    "• max_depth: 5\n"
+    "• n_estimators: 500\n"
+    "• subsample: 0.8"
+)
+metrics_content.font.size = Pt(20)
+metrics_content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Insert the Feature Importance plot
+img_path = "plots/Xgboost_features.png"  # Update the file path if necessary
+slide.shapes.add_picture(img_path, Inches(0.5), Inches(4.5), Inches(8), Inches(3))
+
+
+# Add a new slide for Model Evaluation Summary
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Model Evaluation Summary"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add the Summary Table as text
+summary_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(3))
+summary_frame = summary_box.text_frame
+summary_frame.word_wrap = True
+
+summary_content = summary_frame.add_paragraph()
+summary_content.text = (
+    "Key Model Performance Metrics:\n\n"
+    "1. Linear Regression:\n"
+    "   - Mean Absolute Error (MAE): 50,413.43\n"
+    "   - Mean Squared Error (MSE): 4.80e+09\n"
+    "   - Root Mean Squared Error (RMSE): 69,297.72\n"
+    "   - R-squared (R²): 0.6488\n\n"
+    "2. Random Forest:\n"
+    "   - Mean Absolute Error (MAE): 31,641.57\n"
+    "   - Mean Squared Error (MSE): 2.38e+09\n"
+    "   - Root Mean Squared Error (RMSE): 48,738.76\n"
+    "   - R-squared (R²): 0.8263\n\n"
+    "3. Neural Network:\n"
+    "   - Mean Absolute Error (MAE): 43,290.98\n"
+    "   - Mean Squared Error (MSE): 3.88e+09\n"
+    "   - Root Mean Squared Error (RMSE): 62,308.14\n"
+    "   - R-squared (R²): 0.7161\n\n"
+    "4. XGBoost:\n"
+    "   - Mean Absolute Error (MAE): 30,660.61\n"
+    "   - Mean Squared Error (MSE): 2.20e+09\n"
+    "   - Root Mean Squared Error (RMSE): 46,951.28\n"
+    "   - R-squared (R²): 0.8388"
+)
+summary_content.font.size = Pt(18)
+summary_content.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Add the Model Comparison R² chart
+img_path = "plots/R2.png"  # Update the file path if necessary
+slide.shapes.add_picture(img_path, Inches(0.5), Inches(4.5), Inches(8), Inches(3))
+
+# Add a new slide for the Conclusion
+slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
+
+# Title
+title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.2), Inches(8), Inches(1))
+title_frame = title_box.text_frame
+title = title_frame.add_paragraph()
+title.text = "Conclusion"
+title.font.bold = True
+title.font.size = Pt(36)
+title.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue
+title.alignment = PP_ALIGN.LEFT
+
+# Add content for the conclusion
+content_box = slide.shapes.add_textbox(Inches(0.5), Inches(1.5), Inches(8.5), Inches(5))
+content_frame = content_box.text_frame
+content_frame.word_wrap = True
+
+# Add paragraphs for unsupervised and supervised conclusions
+unsupervised_paragraph = content_frame.add_paragraph()
+unsupervised_paragraph.text = (
+    "• **Unsupervised Analysis:**\n"
+    "   - PCA effectively reduced dimensionality, capturing 83.6% of the variance with 3 components.\n"
+    "   - KMeans clustering uncovered 3 distinct groups of housing data with moderate silhouette scores (~0.36).\n"
+    "   - Insights from clustering revealed regional and economic patterns, which can aid targeted decision-making."
+)
+unsupervised_paragraph.font.size = Pt(18)
+unsupervised_paragraph.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+supervised_paragraph = content_frame.add_paragraph()
+supervised_paragraph.text = (
+    "\n• **Supervised Analysis:**\n"
+    "   - XGBoost emerged as the best-performing model with R² = 0.8388 and the lowest MAE = 30,661.\n"
+    "   - Random Forest also demonstrated strong performance (R² = 0.8263), emphasizing feature importance.\n"
+    "   - Linear Regression, while interpretable, showed lower performance due to model simplicity.\n"
+    "   - Neural Network provided reasonable performance but required careful tuning to avoid overfitting.\n"
+    "   - Key features like 'median_income' and 'ocean_proximity' were consistently important across models."
+)
+supervised_paragraph.font.size = Pt(18)
+supervised_paragraph.font.color.rgb = RGBColor(0, 0, 0)  # Black text
+
+# Add a closing note
+closing_paragraph = content_frame.add_paragraph()
+closing_paragraph.text = (
+    "\n• **Closing Note:**\n"
+    "   - Unsupervised clustering offers valuable exploratory insights, while supervised models enable predictive precision.\n"
+    "   - Combining both approaches provides a holistic view of the dataset and supports better decision-making."
+)
+closing_paragraph.font.size = Pt(18)
+closing_paragraph.font.color.rgb = RGBColor(0, 51, 102)  # Dark blue for emphasis
+closing_paragraph.font.bold = True
+
 
 
 # Save the presentation

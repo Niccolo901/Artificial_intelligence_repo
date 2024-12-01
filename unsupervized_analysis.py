@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 import plotly.express as px
+import plotly.io as pio
+pio.renderers.default = 'notebook'  # Use 'browser' if not using a notebook
 
 
 class UnsupervisedAnalysis:
@@ -231,13 +233,9 @@ class UnsupervisedAnalysis:
         plt.grid(True)
         plt.show()
 
-    def plot_lat_long(self, city_name="Map of Houses with Clusters"):
-        """
-        Plot the locations on an interactive map using longitude and latitude, with cluster visualization.
 
-        Args:
-            city_name (str): Title of the plot.
-        """
+    def plot_lat_long(self, city_name="Map of Houses with Clusters"):
+        print("Starting plot_lat_long...")
         if "longitude" not in self.data.columns or "latitude" not in self.data.columns:
             print("Longitude or latitude column not found in the dataset.")
             return
@@ -246,20 +244,58 @@ class UnsupervisedAnalysis:
             print("Clustering has not been performed yet. Call perform_clustering() first.")
             return
 
+        print("Preparing map...")
         fig = px.scatter_mapbox(
             self.data,
             lat="latitude",
             lon="longitude",
-            color="Cluster",  # Color points by cluster
-            hover_data=["median_house_value", "median_income", "Cluster"],  # Add cluster info in hover data
+            color="Cluster",
+            hover_data=["median_house_value", "median_income", "Cluster"],
             zoom=8,
             height=600,
             width=800,
-            title=city_name
+            title=city_name,
+            color_discrete_map={
+                0: "red",  # Cluster 0 will be red
+                1: "blue",  # Cluster 1 will be blue
+                2: "green",  # Cluster 2 will be green
+                # Add more mappings as needed
+            }
         )
 
-        # Use an open-source map style
         fig.update_layout(mapbox_style="open-street-map")
         fig.update_layout(margin={"r": 0, "t": 50, "l": 0, "b": 0})
+        print("Displaying map...")
         fig.show()
+
+    def compare_clusters(self):
+        """
+        Compare the original features across clusters to understand their differences.
+        """
+        if "Cluster" not in self.data.columns:
+            print("Clustering has not been performed. Call perform_kmeans_with_pca() first.")
+            return
+
+        # Group data by clusters and calculate mean for each feature
+        cluster_summary = self.data.groupby("Cluster").mean()
+
+        print("Cluster Summary Statistics:")
+        display(cluster_summary)
+
+        # Plot feature distributions for each cluster
+        for column in self.data.columns:
+            if column not in ["Cluster"]:
+                plt.figure(figsize=(8, 5))
+                sns.boxplot(data=self.data, x="Cluster", y=column, palette="viridis")
+                plt.title(f"Distribution of {column} Across Clusters")
+                plt.xlabel("Cluster")
+                plt.ylabel(column)
+                plt.grid(axis="y", linestyle="--", alpha=0.7)
+                plt.tight_layout()
+                plt.show()
+
+
+
+
+
 
